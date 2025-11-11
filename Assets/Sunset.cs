@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Sunset : MonoBehaviour
 {
-    public float sunsetDuration = 10f; // Exactly 10 seconds
+    public float sunsetDuration = 10f; 
     public bool startSunsetOnPlay = true;
     
     public Color startColor = Color.white;
-    public Color endColor = new Color(1f, 0.4f, 0.2f); // Deep orange
+    public Color endColor = new Color(1f, 0.4f, 0.2f); 
     
     public float startIntensity = 1f;
     public float endIntensity = 0.3f;
@@ -19,7 +19,6 @@ public class Sunset : MonoBehaviour
 
     void Start()
     {
-        // Get the directional light component
         sunLight = GetComponent<Light>();
         
         if (sunLight == null)
@@ -44,25 +43,20 @@ public class Sunset : MonoBehaviour
     {
         if (isSunsetting && sunsetTimer < sunsetDuration)
         {
-            // Update timer
             sunsetTimer += Time.deltaTime;
             
-            // Calculate progress (0 to 1)
             float progress = sunsetTimer / sunsetDuration;
             
-            // Update sun rotation (moving downward)
             transform.rotation = Quaternion.Lerp(startRotation, endRotation, progress);
             
             // Update light color and intensity
             sunLight.color = Color.Lerp(startColor, endColor, progress);
             sunLight.intensity = Mathf.Lerp(startIntensity, endIntensity, progress);
             
-            // Optional: Make shadows softer during sunset
             sunLight.shadowStrength = Mathf.Lerp(1f, 0.5f, progress);
         }
     }
     
-    // Public method to start the sunset
     public void StartSunset()
     {
         if (sunLight != null)
@@ -72,7 +66,6 @@ public class Sunset : MonoBehaviour
         }
     }
     
-    // Public method to reset the sunset
     public void ResetSunset()
     {
         isSunsetting = false;
@@ -83,7 +76,6 @@ public class Sunset : MonoBehaviour
         sunLight.shadowStrength = 1f;
     }
     
-    // Public method to instantly set to full sunset
     public void SetToFullSunset()
     {
         transform.rotation = endRotation;

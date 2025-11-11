@@ -12,7 +12,6 @@ public class SunsetYaxis : MonoBehaviour
 
     void Start()
     {
-        // Set start and end positions (keep X and Z the same)
         startPos = new Vector3(transform.position.x, startY, transform.position.z);
         endPos = new Vector3(transform.position.x, endY, transform.position.z);
         
